@@ -7,18 +7,6 @@ Intellify – National Level Hackathon 3.0 by Marwadi University (MU), Gujarat
 
 <img width="30.9%" alt="SLT-frontend: Sign Language Translator Frontend logo" src="https://github.com/sign-language-translator/slt-frontend/blob/784d68a419e9c65c88129534b31dfbdd8270d456/public/logo512.png" />
 
-A **web GUI** of the [`sign-language-translator`](https://github.com/sign-language-translator/sign-language-translator) python package<br/>and a tool to create [`sign-language-datasets`](https://github.com/sign-language-translator/sign-language-datasets)<br/>made with React.
-
-<br/>
-
-[![Web Demo](https://img.shields.io/badge/%F0%9F%8C%90%20Website-slt%E2%80%93ai.vercel.app-mediumpurple)](https://slt-ai.vercel.app/)<br/>
-[![GitHub Repo stars](https://img.shields.io/github/stars/sign-language-translator/slt-frontend?logo=github)](https://github.com/sign-language-translator/slt-frontend/stargazers)
-[![Deployment](https://img.shields.io/github/deployments/mdsrqbl/slt-frontend/production?label=vercel&logo=vercel&logoColor=white)](https://github.com/mdsrqbl/slt-frontend/deployments)
-
-| **Support Us** ❤️ | [![PayPal](https://img.shields.io/badge/PayPal-00457C?logo=paypal&logoColor=white)](https://www.paypal.com/donate/?hosted_button_id=7SNGNSKUQXQW2) |
-| - | - |
-
-</div>
 
 ---
 
