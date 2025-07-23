@@ -10,22 +10,6 @@ Intellify – National Level Hackathon 3.0 by Marwadi University (MU), Gujarat
 
 ---
 
-1. [Sign Language Translator Frontend](#sign-language-translator-frontend)
-   1. [Pages and Features](#pages-and-features)
-      1. [1. Translator](#1-translator)
-      2. [2. Customize](#2-customize)
-         1. [2.1 Sign Dictionary Annotation](#21-sign-dictionary-annotation)
-         2. [2.2 Sign Clip Extraction](#22-sign-clip-extraction)
-         3. [2.3 Synthetic Sentences](#23-synthetic-sentences)
-      3. [3. Learn](#3-learn)
-         1. [3.1 Walkthrough](#31-walkthrough)
-         2. [3.2 Courses](#32-courses)
-      4. [4. Documentation](#4-documentation)
-   2. [Local Setup](#local-setup)
-   3. [Directory Tree](#directory-tree)
-   4. [License and citation](#license-and-citation)
-   5. [ToDo / Contribution](#todo--contribution)
-
 ## Pages and Features
 
 ### 1. Translator
