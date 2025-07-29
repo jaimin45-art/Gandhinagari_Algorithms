@@ -12,8 +12,6 @@ export const WhatfeatureData = [
     text: "Test yourselves on the same tool by trying to think of a sign jn your mind, doing it and let the model understand and recognize it,do the signs again but this time without referring to the guide.",
   },
 ];
-
-
 export const featuresData = [
   {
     title: "Real-Time Recognition",

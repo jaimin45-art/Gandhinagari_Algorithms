@@ -7,7 +7,7 @@ const Testimonials = () => {
     return (
         <div className='signlang_testimonials-container section__padding'>
             <div className="signlang_testimonial-header">
-                <h2 className='gradient__text'>Here are the Feedback given by the users and domain experts
+                <h2 className='gradient__text'>Developer
                 </h2>
             </div>
 

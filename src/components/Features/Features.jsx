@@ -8,7 +8,7 @@ const Features = () => {
         <div className='signlang_features section__padding'>
             <div className="signlang_feature-heading">
                 <h1 className="gradient__text">Revolutionizing Sign Language Communication with Cutting-Edge Technology</h1>
-                <p>Explore the Features</p>
+                <p>Explore the Features</p> 
             </div>
 
              <div className="singlang_features-container">

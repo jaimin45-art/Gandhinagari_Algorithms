@@ -228,6 +228,7 @@ const Detect = () => {
   return (
     <>
       <div className="signlang_detection-container">
+         <div class="image-glass"></div>
         {accessToken ? (
           <>
             <div style={{ position: "relative" }}>
@@ -261,7 +262,7 @@ const Detect = () => {
                   <img src={currentImage.url} alt={`img ${currentImage.id}`} />
                 ) : (
                   <h3 className="gradient__text">
-                    Click on the Start Button <br /> to practice with Images
+                    
                   </h3>
                 )}
               </div>
