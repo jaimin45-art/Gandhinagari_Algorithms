@@ -28,6 +28,7 @@ const Detect = () => {
   const [gestureRecognizer, setGestureRecognizer] = useState(null);
   const [runningMode, setRunningMode] = useState("IMAGE");
   const [progress, setProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   const requestRef = useRef();
 
@@ -41,17 +42,60 @@ const Detect = () => {
 
   const [currentImage, setCurrentImage] = useState(null);
 
-  useEffect(() => {
-    let intervalId;
-    if (webcamRunning) {
-      intervalId = setInterval(() => {
-        const randomIndex = Math.floor(Math.random() * SignImageData.length);
-        const randomImage = SignImageData[randomIndex];
-        setCurrentImage(randomImage);
-      }, 5000);
+  // Function to find image based on detected gesture
+  const findImageForGesture = (gestureName) => {
+    console.log("Looking for gesture:", gestureName);
+    console.log("Available images:", SignImageData.map(img => img.name));
+    
+    // Handle common variations in gesture names
+    const normalizedGestureName = gestureName.toLowerCase().replace(/\s+/g, '');
+    console.log("Normalized gesture name:", normalizedGestureName);
+    
+    // Try exact match first
+    let foundImage = SignImageData.find(image => {
+      const normalizedImageName = image.name.toLowerCase().replace(/\s+/g, '');
+      console.log(`Comparing: "${normalizedImageName}" with "${normalizedGestureName}"`);
+      return normalizedImageName === normalizedGestureName;
+    });
+    
+    // If no exact match, try partial match
+    if (!foundImage) {
+      foundImage = SignImageData.find(image => {
+        const normalizedImageName = image.name.toLowerCase().replace(/\s+/g, '');
+        return normalizedImageName.includes(normalizedGestureName) || 
+               normalizedGestureName.includes(normalizedImageName);
+      });
     }
-    return () => clearInterval(intervalId);
-  }, [webcamRunning]);
+    
+    // If still no match, try case-insensitive match
+    if (!foundImage) {
+      foundImage = SignImageData.find(image => 
+        image.name.toLowerCase() === gestureName.toLowerCase()
+      );
+    }
+    
+    console.log("Found image:", foundImage);
+    return foundImage;
+  };
+
+  // Update current image when gesture is detected
+  useEffect(() => {
+    console.log("Gesture output changed:", gestureOutput);
+    if (gestureOutput && gestureOutput.trim() !== "") {
+      const matchingImage = findImageForGesture(gestureOutput);
+      if (matchingImage) {
+        console.log("Setting current image to:", matchingImage);
+        setCurrentImage(matchingImage);
+      } else {
+        console.log("No matching image found for gesture:", gestureOutput);
+        // Show a default image or message for unrecognized gestures
+        setCurrentImage({
+          name: "Unknown",
+          url: "/logo192.png" // Use a default image
+        });
+      }
+    }
+  }, [gestureOutput]);
 
   if (
     process.env.NODE_ENV === "development" ||
@@ -104,6 +148,10 @@ const Detect = () => {
       }
     }
     if (results.gestures.length > 0) {
+      console.log("Detected gestures:", results.gestures);
+      console.log("Category name:", results.gestures[0][0].categoryName);
+      console.log("Score:", results.gestures[0][0].score);
+      
       setDetectedData((prevData) => [
         ...prevData,
         {
@@ -116,6 +164,8 @@ const Detect = () => {
     } else {
       setGestureOutput("");
       setProgress("");
+      // Clear the current image when no gesture is detected
+      setCurrentImage(null);
     }
 
     if (webcamRunning === true) {
@@ -129,8 +179,8 @@ const Detect = () => {
   }, [predictWebcam]);
 
   const enableCam = useCallback(() => {
-    if (!gestureRecognizer) {
-      alert("Please wait for gestureRecognizer to load");
+    if (!gestureRecognizer || isLoading) {
+      alert("Please wait for gesture recognizer to load");
       return;
     }
 
@@ -205,22 +255,33 @@ const Detect = () => {
     user?.name,
     user?.userId,
     dispatch,
+    isLoading,
   ]);
-
   useEffect(() => {
     async function loadGestureRecognizer() {
-      const vision = await FilesetResolver.forVisionTasks(
-        "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm"
-      );
-      const recognizer = await GestureRecognizer.createFromOptions(vision, {
-        baseOptions: {
-          modelAssetPath:
-            process.env.REACT_APP_FIREBASE_STORAGE_TRAINED_MODEL_25_04_2023,
-        },
-        numHands: 2,
-        runningMode: runningMode,
-      });
-      setGestureRecognizer(recognizer);
+      try {
+        console.log("Loading custom sign language gesture recognizer...");
+        const vision = await FilesetResolver.forVisionTasks(
+          "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm"
+        );
+        
+        // Use the custom trained sign language model
+        const recognizer = await GestureRecognizer.createFromOptions(vision, {
+          baseOptions: {
+            modelAssetPath: "/sign_language_recognizer_25-04-2023.task",
+          },
+          numHands: 2,
+          runningMode: runningMode,
+        });
+        
+        console.log("Custom sign language gesture recognizer loaded successfully!");
+        setGestureRecognizer(recognizer);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error loading custom gesture recognizer:", error);
+        setIsLoading(false);
+        alert("Failed to load custom gesture recognizer. Please refresh the page and try again.");
+      }
     }
     loadGestureRecognizer();
   }, [runningMode]);
@@ -242,8 +303,8 @@ const Detect = () => {
               <canvas ref={canvasRef} className="signlang_canvas" />
 
               <div className="signlang_data-container">
-                <button onClick={enableCam}>
-                  {webcamRunning ? "Stop" : "Start"}
+                <button onClick={enableCam} disabled={isLoading}>
+                  {isLoading ? "Loading..." : webcamRunning ? "Stop" : "Start"}
                 </button>
 
                 <div className="signlang_data">
@@ -259,10 +320,19 @@ const Detect = () => {
 
               <div className="signlang_image-div">
                 {currentImage ? (
-                  <img src={currentImage.url} alt={`img ${currentImage.id}`} />
+                  currentImage.name === "Unknown" ? (
+                    <div>
+                      <img src={currentImage.url} alt="Unknown gesture" />
+                      <h3 className="gradient__text">
+                        Gesture detected: {gestureOutput}
+                      </h3>
+                    </div>
+                  ) : (
+                    <img src={currentImage.url} alt={`Sign for ${currentImage.name}`} />
+                  )
                 ) : (
                   <h3 className="gradient__text">
-                    
+                    Perform a sign to see the reference image
                   </h3>
                 )}
               </div>

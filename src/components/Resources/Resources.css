@@ -1,0 +1,457 @@
+.resources-container {
+  min-height: 100vh;
+  padding: 2rem;
+  background: var(--color-bg);
+  color: white;
+}
+
+.resources-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.resources-header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.resources-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.resources-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.tab-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.tab-btn.active {
+  background: var(--gradient-text);
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(174, 103, 250, 0.4);
+}
+
+.resources-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.resource-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Video Cards */
+.video-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.video-thumbnail {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.video-thumbnail img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-card:hover .video-overlay {
+  opacity: 1;
+}
+
+.play-icon {
+  font-size: 3rem;
+  color: white;
+}
+
+.video-duration {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.video-category {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--gradient-text);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Material Cards */
+.material-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.material-icon {
+  font-size: 2.5rem;
+  color: var(--color-subtext);
+  flex-shrink: 0;
+}
+
+.material-meta {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.material-type,
+.material-category,
+.material-size {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+}
+
+/* Link Cards */
+.link-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.link-icon {
+  font-size: 2.5rem;
+  color: var(--color-subtext);
+  flex-shrink: 0;
+}
+
+.link-meta {
+  margin: 0.5rem 0;
+}
+
+.link-category {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+}
+
+/* Exercise Cards */
+.exercise-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.exercise-icon {
+  font-size: 2.5rem;
+  color: var(--color-subtext);
+  flex-shrink: 0;
+}
+
+.exercise-meta {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.exercise-difficulty,
+.exercise-time {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+}
+
+.exercise-details {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.exercise-details h4 {
+  color: white;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.exercise-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.exercise-details li {
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.25rem 0;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.exercise-details li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-subtext);
+  font-weight: bold;
+}
+
+/* Resource Content */
+.resource-content h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.resource-content p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.resource-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--gradient-text);
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.resource-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(174, 103, 250, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+.exercise-btn {
+  background: var(--gradient-text);
+}
+
+/* Alphabet Guide */
+.alphabet-guide {
+  text-align: center;
+}
+
+.alphabet-guide h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.alphabet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.alphabet-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.alphabet-item:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.alphabet-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.letter-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* Resources Footer */
+.resources-footer {
+  max-width: 800px;
+  margin: 3rem auto 0;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.learning-tips h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: white;
+  text-align: center;
+}
+
+.learning-tips ul {
+  list-style: none;
+  padding: 0;
+}
+
+.learning-tips li {
+  padding: 0.5rem 0;
+  color: rgba(255, 255, 255, 0.9);
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.learning-tips li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-subtext);
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .resources-container {
+    padding: 1rem;
+  }
+  
+  .resources-header h1 {
+    font-size: 2rem;
+  }
+  
+  .resources-tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .tab-btn {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+  
+  .resources-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .alphabet-grid {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 0.5rem;
+  }
+  
+  .alphabet-item img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .letter-name {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .resource-card {
+    padding: 1rem;
+  }
+  
+  .material-card,
+  .link-card,
+  .exercise-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .material-icon,
+  .link-icon,
+  .exercise-icon {
+    align-self: center;
+  }
+}

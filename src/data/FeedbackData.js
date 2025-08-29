@@ -15,7 +15,7 @@ export const userFeedback = [
         tag: "Backend Developer"
     },
      {
-        title: "Ayush Patel",
+        title: "Aayush Patel",
         text: "The advancement in the field of sign language is really helpful for the deaf  and dumb this eliminates the need of a middle by just using the website, and last but not the least the UI is super smooth and user-friendly.",
         tag: "Backend Developer"
     },
