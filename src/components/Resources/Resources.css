@@ -311,52 +311,73 @@
 /* Alphabet Guide */
 .alphabet-guide {
   text-align: center;
+  padding: 2rem;
+  background: #0d1117;
+  font-family: 'Poppins', sans-serif;
 }
 
 .alphabet-guide h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin-bottom: 2.5rem;
   background: var(--gradient-text);
+  
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  letter-spacing: 2px;
 }
 
 .alphabet-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  gap: 1rem;
-  max-width: 800px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1.2rem;
+  justify-items: center;
+  margin-top: 1rem;
+  padding: 0 1rem;
 }
 
 .alphabet-item {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
   padding: 1rem;
   text-align: center;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  width: 120px;
+  backdrop-filter: blur(10px);
 }
 
 .alphabet-item:hover {
-  transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-6px) scale(1.05);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
 }
 
 .alphabet-item img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
   margin-bottom: 0.5rem;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
 }
 
-.letter-name {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: white;
+.alphabet-item:hover img {
+  transform: scale(1.4);
 }
+
+/* .letter-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: capitalize;
+  margin-top: 0.3rem;
+} */
+
 
 /* Resources Footer */
 .resources-footer {

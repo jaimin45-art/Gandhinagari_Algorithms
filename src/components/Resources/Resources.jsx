@@ -141,10 +141,10 @@ const Resources = () => {
     <div className="alphabet-guide">
       <h2>ASL Alphabet Reference</h2>
       <div className="alphabet-grid">
-        {SignImageData.slice(0, 26).map((letter) => (
+        {SignImageData.slice(0, 41).map((letter) => (
           <div key={letter.name} className="alphabet-item">
             <img src={letter.url} alt={`ASL sign for letter ${letter.name}`} />
-            <span className="letter-name">{letter.name}</span>
+            {/* <span className="letter-name">{letter.name}</span> */}
           </div>
         ))}
       </div>

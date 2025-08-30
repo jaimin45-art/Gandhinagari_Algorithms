@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Header.css"
-import SignHand from "../../assests/SignHand.png";
+import SignHand from "../../assests/header.jpg";
 
 const Header = () => {
   return (

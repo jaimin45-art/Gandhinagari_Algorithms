@@ -1,74 +1,74 @@
 export const learningVideos = [
   {
     id: 1,
-    title: "ASL Alphabet - Learn the ABCs in American Sign Language",
+    title: "SignAloud: Gloves that translate sign language to voice",
     description: "Complete guide to signing all 26 letters of the alphabet with clear demonstrations",
-    url: "https://www.youtube.com/watch?v=9mYICgtXtQY",
-    thumbnail: "https://img.youtube.com/vi/9mYICgtXtQY/maxresdefault.jpg",
-    duration: "8:45",
+    url: "http://www.youtube.com/watch?v=NVCE7JR0FCQ](http://www.youtube.com/watch?v=NVCE7JR0FCQ)",
+    thumbnail: "https://img.youtube.com/vi/NVCE7JR0FCQ/maxresdefault.jpg",
+    duration: "1:25",
     category: "Beginner"
   },
   {
     id: 2,
-    title: "ASL Numbers 1-100 - Learn to Count in Sign Language",
+    title: "AReal Time Sign Language Detection with Tensorflow Object Detection and Python",
     description: "Master counting from 1 to 100 in American Sign Language with step-by-step instruction",
-    url: "https://www.youtube.com/watch?v=wZM4hJSktQo",
-    thumbnail: "https://img.youtube.com/vi/wZM4hJSktQo/maxresdefault.jpg",
-    duration: "12:30",
+    url: "http://www.youtube.com/watch?v=pDXdlXlaCco](http://www.youtube.com/watch?v=pDXdlXlaCco)",
+    thumbnail: "https://img.youtube.com/vi/pDXdlXlaCco/maxresdefault.jpg",
+    duration: "32:27",
     category: "Beginner"
   },
   {
     id: 3,
-    title: "25 Basic ASL Signs for Beginners",
+    title: "Inclusive voice : An AI-Based Sign Language Translator App",
     description: "Essential everyday signs including greetings, family, and common phrases",
-    url: "https://www.youtube.com/watch?v=1Tq-bQyMK_A",
-    thumbnail: "https://img.youtube.com/vi/1Tq-bQyMK_A/maxresdefault.jpg",
-    duration: "15:20",
+    url: "http://www.youtube.com/watch?v=DZdSWM8hbzY](http://www.youtube.com/watch?v=DZdSWM8hbzY)",
+    thumbnail: "https://img.youtube.com/vi/DZdSWM8hbzY/maxresdefault.jpg",
+    duration: "1:19",
     category: "Beginner"
   },
   {
     id: 4,
-    title: "ASL Fingerspelling Practice - Improve Your Speed",
+    title: "Can AI replace interpreters? #ASL",
     description: "Practice fingerspelling with common words and improve your speed and accuracy",
-    url: "https://www.youtube.com/watch?v=OJWJE0x7T4Q",
-    thumbnail: "https://img.youtube.com/vi/OJWJE0x7T4Q/maxresdefault.jpg",
-    duration: "10:15",
+    url: "http://www.youtube.com/watch?v=ZAHS3dSZCN8](http://www.youtube.com/watch?v=ZAHS3dSZCN8)",
+    thumbnail: "https://img.youtube.com/vi/ZAHS3dSZCN8/maxresdefault.jpg",
+    duration: "00:11",
     category: "Intermediate"
   },
   {
     id: 5,
-    title: "ASL Grammar Basics - Sentence Structure",
+    title: "AI Translates Sign Language! Meet Google's Sign Gemma",
     description: "Learn the fundamental grammar rules and sentence structure in American Sign Language",
-    url: "https://www.youtube.com/watch?v=6F3ONwrCxMg",
-    thumbnail: "https://img.youtube.com/vi/6F3ONwrCxMg/maxresdefault.jpg",
-    duration: "18:40",
+    url: "http://www.youtube.com/watch?v=MlpFkh0zSOU](http://www.youtube.com/watch?v=MlpFkh0zSOU)",
+    thumbnail: "https://img.youtube.com/vi/MlpFkh0zSOU/maxresdefault.jpg",
+    duration: "00:10",
     category: "Intermediate"
   },
   {
     id: 6,
-    title: "50 Essential ASL Signs for Daily Communication",
+    title: "25 ASL Signs You Need to Know | ASL Basics",
     description: "Comprehensive collection of the most important signs for everyday conversations",
-    url: "https://www.youtube.com/watch?v=9mYICgtXtQY",
-    thumbnail: "https://img.youtube.com/vi/9mYICgtXtQY/maxresdefault.jpg",
-    duration: "22:15",
+    url: "http://www.youtube.com/watch?v=0FcwzMq4iWg](http://www.youtube.com/watch?v=0FcwzMq4iWg)",
+    thumbnail: "https://img.youtube.com/vi/0FcwzMq4iWg/maxresdefault.jpg",
+    duration: "06:33",
     category: "Beginner"
   },
   {
     id: 7,
-    title: "ASL Facial Expressions and Body Language",
+    title: "20+ Basic Sign Language Phrases for Beginners | ASL",
     description: "Master the crucial non-manual signals that make ASL communication complete",
-    url: "https://www.youtube.com/watch?v=wZM4hJSktQo",
-    thumbnail: "https://img.youtube.com/vi/wZM4hJSktQo/maxresdefault.jpg",
-    duration: "14:30",
+    url: "http://www.youtube.com/watch?v=v1desDduz5M](http://www.youtube.com/watch?v=v1desDduz5M)",
+    thumbnail: "https://img.youtube.com/vi/v1desDduz5M/maxresdefault.jpg",
+    duration: "13:13",
     category: "Intermediate"
   },
   {
     id: 8,
-    title: "ASL Conversation Practice - Real-Life Scenarios",
+    title: "Learn 40 conversational words and phrases for beginners in American Sign Language ASL",
     description: "Practice ASL conversations in realistic scenarios like ordering food and asking directions",
-    url: "https://www.youtube.com/watch?v=1Tq-bQyMK_A",
-    thumbnail: "https://img.youtube.com/vi/1Tq-bQyMK_A/maxresdefault.jpg",
-    duration: "25:45",
+    url: "http://www.youtube.com/watch?v=RhQvlq-mZtA](http://www.youtube.com/watch?v=RhQvlq-mZtA)",
+    thumbnail: "https://img.youtube.com/vi/RhQvlq-mZtA/maxresdefault.jpg",
+    duration: "07:56",
     category: "Advanced"
   }
 ];
@@ -76,134 +76,128 @@ export const learningVideos = [
 export const learningMaterials = [
   {
     id: 1,
-    title: "ASL Alphabet Chart",
+    title: "Sign Language Transformers",
     description: "Printable chart showing all 26 letters of the alphabet in ASL with clear illustrations",
     type: "PDF",
-    downloadUrl: "/downloads/asl-alphabet-chart.pdf",
-    category: "Beginner",
-    fileSize: "2.3 MB"
+    downloadUrl: "https://openaccess.thecvf.com/content_CVPR_2020/papers/Camgoz_Sign_Language_Transformers_Joint_End-to-End_Sign_Language_Recognition_and_Translation_CVPR_2020_paper.pdf",
+    category: "Reaserch Paper",
   },
   {
     id: 2,
-    title: "ASL Numbers Guide",
+    title: "Challenges and Innovative Solutions in Sign Language Communication",
     description: "Complete guide to signing numbers 0-100 with practice exercises and examples",
     type: "PDF",
-    downloadUrl: "/downloads/asl-numbers-guide.pdf",
-    category: "Beginner",
-    fileSize: "1.8 MB"
+    downloadUrl: "https://www.jetir.org/papers/JETIR2506828.pdf",
+    category: "Review/Survey",
   },
   {
     id: 3,
-    title: "Common ASL Phrases Manual",
+    title: "Joint End-to-end Sign Language Recognition and Translation",
     description: "Comprehensive manual with 100+ common phrases and expressions for daily communication",
     type: "PDF",
-    downloadUrl: "/downloads/asl-phrases-manual.pdf",
-    category: "Beginner",
-    fileSize: "4.2 MB"
+    downloadUrl: "https://personalpages.surrey.ac.uk/s.hadfield/papers/Camgoz20a.pdf",
+    category: "University of survey",
   },
   {
     id: 4,
-    title: "ASL Grammar Rules",
+    title: "Neural Sign Language Translation",
     description: "Detailed guide to ASL grammar, syntax, and sentence structure with examples",
     type: "PDF",
-    downloadUrl: "/downloads/asl-grammar-rules.pdf",
-    category: "Intermediate",
-    fileSize: "3.1 MB"
+    downloadUrl: "https://openaccess.thecvf.com/content_cvpr_2018/papers/Camgoz_Neural_Sign_Language_CVPR_2018_paper.pdf",
+    category: "Early SLT approach",
   },
   {
     id: 5,
-    title: "ASL Practice Worksheets",
+    title: "SignSpeak",
     description: "Interactive worksheets for practicing ASL vocabulary and grammar with answer keys",
     type: "PDF",
-    downloadUrl: "/downloads/asl-practice-worksheets.pdf",
-    category: "All Levels",
-    fileSize: "5.7 MB"
+    downloadUrl: "https://journalijsra.com/sites/default/files/fulltext_pdf/IJSRA-2025-1523.pdf",
+    category: "Translation system prototype",
   },
   {
     id: 6,
-    title: "ASL Vocabulary Builder",
+    title: "Sign-Language Datasets at Scale",
     description: "Expanded vocabulary list with categories like family, emotions, and activities",
     type: "PDF",
-    downloadUrl: "/downloads/asl-vocabulary-builder.pdf",
-    category: "Intermediate",
-    fileSize: "2.9 MB"
+    downloadUrl: "https://openreview.net/pdf/8022ab4d9d721263c9fdb7b62b97f921904f3010.pdf",
+    category: "DatasetOverview",
   },
-  {
-    id: 7,
-    title: "ASL Conversation Starters",
-    description: "Collection of conversation topics and questions to practice ASL communication",
-    type: "PDF",
-    downloadUrl: "/downloads/asl-conversation-starters.pdf",
-    category: "Intermediate",
-    fileSize: "1.5 MB"
-  },
-  {
-    id: 8,
-    title: "ASL Cultural Guide",
-    description: "Understanding Deaf culture, etiquette, and community practices",
-    type: "PDF",
-    downloadUrl: "/downloads/asl-cultural-guide.pdf",
-    category: "All Levels",
-    fileSize: "3.8 MB"
-  }
+  // {
+  //   id: 7,
+  //   title: "ASL Conversation Starters",
+  //   description: "Collection of conversation topics and questions to practice ASL communication",
+  //   type: "PDF",
+  //   downloadUrl: "/downloads/asl-conversation-starters.pdf",
+  //   category: "Intermediate",
+  //   fileSize: "1.5 MB"
+  // },
+  // {
+  //   id: 8,
+  //   title: "ASL Cultural Guide",
+  //   description: "Understanding Deaf culture, etiquette, and community practices",
+  //   type: "PDF",
+  //   downloadUrl: "/downloads/asl-cultural-guide.pdf",
+  //   category: "All Levels",
+  //   fileSize: "3.8 MB"
+  // }
 ];
 
 export const usefulLinks = [
   {
     id: 1,
-    title: "ASL University",
-    description: "Free online ASL lessons and resources with comprehensive course materials",
-    url: "https://www.lifeprint.com/",
-    category: "Learning Platform"
+    title: "RWTH-PHOENIX-Weather 2014T",
+    description: "A large German Sign Language dataset focusing on weather forecasts for continuous sign language recognition",
+    url: " https://www-i6.informatik.rwth-aachen.de/~koller/RWTH-PHOENIX-2014-T/",
+    category: "Sign Language Dataset"
   },
   {
     id: 2,
-    title: "Sign Language 101",
-    description: "Comprehensive ASL learning platform with video lessons and interactive content",
-    url: "https://www.signlanguage101.com/",
-    category: "Learning Platform"
+    title: "How2Sign",
+    description: "A multimodal and multiview dataset for American Sign Language, designed to support sign recognition and translation research",
+    url: "https://how2sign.github.io/",
+    category: "Sign Language Dataset"
   },
   {
     id: 3,
-    title: "ASL Dictionary",
-    description: "Online dictionary with thousands of ASL signs and video demonstrations",
-    url: "https://www.handspeak.com/",
-    category: "Reference"
+    title: "Gallaudet University: Position on ASL and AI Tools",
+    description: " Gallaudet’s official statement on the ethical use of AI tools in American Sign Language contexts",
+    url: "https://gallaudet.edu/linguistics/position-statements/asl-and-ai-tools/",
+    category: "Policy / Ethical Position"
   },
   {
     id: 4,
-    title: "National Association of the Deaf",
-    description: "Official organization providing resources, advocacy, and community support",
-    url: "https://www.nad.org/",
-    category: "Organization"
+    title: "European Forum of Sign Language Interpreters (efsli): Stance on AI",
+    description: "O EFSli’s vision and concerns on the role of AI in sign language interpreting and its future implications",
+    url: "https://efsli.org/efslis-stance-on-ai-and-sign-language-interpreting-our-vision-for-the-future/",
+    category: "Policy / Ethical Position"
   },
   {
     id: 5,
-    title: "ASL App",
-    description: "Mobile app for learning ASL on the go with video lessons and practice exercises",
-    url: "https://theaslapp.com/",
-    category: "Mobile App"
+    title: "Deaf Journalism Europe: AI and Machine Translation - A Threat to the Deaf Community",
+    description: "An article discussing potential risks and challenges of AI-based machine translation for the Deaf community",
+    url: "https://www.deafjournalism.eu/ai-and-machine-translation-a-threat-to-the-deaf-community/",
+    category: "Awareness / Community Perspective"
   },
   {
     id: 6,
-    title: "Gallaudet University",
-    description: "World's only university designed for deaf and hard of hearing students",
-    url: "https://www.gallaudet.edu/",
-    category: "Education"
+    title: "ELAN (EUDICO Linguistic Annotator)",
+    description: "A professional tool for creating, analyzing, and annotating video/audio data, widely used in sign language research",
+    url: "https://archive.mpi.nl/tla/elan",
+    category: "Annotation / Research Tool"
   },
   {
     id: 7,
-    title: "ASL Pro",
-    description: "Professional ASL learning platform with certified instructors",
-    url: "https://www.aslpro.com/",
-    category: "Learning Platform"
+    title: "ASLLRP Sign Bank (Rutgers)",
+    description: "An online lexical database of American Sign Language signs for linguistic research and reference",
+    url: "https://dai.cs.rutgers.edu/dai/s/signbank ",
+    category: "Sign Language Lexical Resource"
   },
   {
     id: 8,
-    title: "Deaf Culture Online",
+    title: "AI-Based Sign Language Translator",
     description: "Resources and information about Deaf culture and community",
-    url: "https://www.deafculture.com/",
-    category: "Culture"
+    url: "https://www.signapse.ai/",
+    category: "Website"
   }
 ];
 
