@@ -3,12 +3,12 @@ import "firebase/compat/auth";
 import 'firebase/compat/firestore';
 
 const firebaseConfig = {
-  apiKey: "API_KEY",
-  authDomain: "AUTH_DOMAIN",
-  projectId: "PROJECT_ID",
-  storageBucket: "BUCKET",
-  messagingSenderId: "MESSAGE_ID",
-  appId: "APP_ID",
+  apiKey: "AIzaSyDSyM3K8WjNLbVoND4jghEgPcjgE1Pbc-o",
+  authDomain: "hackathon-7caad.firebaseapp.com",
+  projectId: "hackathon-7caad",
+  storageBucket: "hackathon-7caad.appspot.com",
+  messagingSenderId: "327250517961",
+  appId: "1:327250517961:web:3aeb1e40251127852e5218",
 };
 
 firebase.initializeApp(firebaseConfig);
