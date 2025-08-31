@@ -178,10 +178,9 @@ Preview of the python library's documentation & research papers.
 
 ![Dashboard Image](./public/screenshots/dasboard.jpeg)
 
-## Support
 
-For support, contact
 
-- email: shubhamp1251@gmail.com
-- LinkedIn: [Shubham More](https://www.linkedin.com/in/shubham-more1251/)
->>>>>>> c103df1 (5th-May-2023 commit)
+<img width="1906" height="903" alt="image" src="https://github.com/user-attachments/assets/18612eb6-324b-4339-9736-da298721575f" />
+
+
+
