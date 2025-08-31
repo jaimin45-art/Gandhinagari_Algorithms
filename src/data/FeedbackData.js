@@ -1,27 +1,27 @@
 export const userFeedback = [
     {
         title: "Aum Pethani",
-        text: "The sign language AI web app is an innovative and user-friendly tool that accurately detects hand gestures and translates them into corresponding signs. Its ensures reliable performance, making it an excellent resource for communication and education.",
-        tag: "Team Leader"
+       tag: "Team Leader",
+        text: "The project was guided and coordinated to ensure smooth progress. All team members worked together effectively to create a useful and reliable sign language AI web app."
     },
     {
         title: "Utkarsh Padhya",
-        text: "The user experinece of the application is very smooth and easy to understand. Used this application to try out different signs in ASL and detection was smooth and prompt.",
-        tag: "Front End developer"
+         tag: "Front-End Developer",
+        text: "The interface is designed to be simple, clear, and easy to use. Users can interact with the app smoothly and quickly understand how to translate signs with minimal effort."
     },
     {
         title: "Jaimin Modi",
-        text: "The advancement in the field of sign language is really helpful for the deaf  and dumb this eliminates the need of a middle by just using the website, and last but not the least the UI is super smooth and user-friendly.",
-        tag: "Backend Developer"
+        tag: "Backend Developer",
+        text: "The system processes gestures accurately and responds efficiently. The backend ensures that the app works reliably, translating signs correctly and handling all data smoothly."
     },
-     {
+    {
         title: "Aayush Patel",
-        text: "The advancement in the field of sign language is really helpful for the deaf  and dumb this eliminates the need of a middle by just using the website, and last but not the least the UI is super smooth and user-friendly.",
-        tag: "Backend Developer"
+        tag: "Backend Developer",
+        text: "The system processes gestures accurately and responds efficiently. The backend ensures that the app works reliably, translating signs correctly and handling all data smoothly."
     },
-     {
+    {
         title: "Anas Nakhuda",
-        text: "The advancement in the field of sign language is really helpful for the deaf  and dumb this eliminates the need of a middle by just using the website, and last but not the least the UI is super smooth and user-friendly.",
-        tag: "Front-End Developer"
+        tag: "Front-End Developer",
+        text: "The interface is designed to be simple, clear, and easy to use. Users can interact with the app smoothly and quickly understand how to translate signs with minimal effort."
     }
-]
+];
