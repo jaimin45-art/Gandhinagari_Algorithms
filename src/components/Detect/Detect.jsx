@@ -154,12 +154,13 @@ const Detect = () => {
       return;
     }
 
-    try {
-      const exportData = {
+          try {
+        // Extract only the sentences without timestamps or metadata
+        const sentencesOnly = sentenceHistory.map(item => item.sentence);
         
-        
-        sentences: sentenceHistory
-      };
+        const exportData = {
+          sentences: sentencesOnly
+        };
 
       const dataStr = JSON.stringify(exportData, null, 2);
       const dataBlob = new Blob([dataStr], { type: 'application/json' });
@@ -167,7 +168,7 @@ const Detect = () => {
       const url = URL.createObjectURL(dataBlob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = `sign-language-sentences-${new Date().toISOString().split('T')[0]}.json`;
+      link.download = `sign-language-sentences.json`;
       link.click();
       
       URL.revokeObjectURL(url);
