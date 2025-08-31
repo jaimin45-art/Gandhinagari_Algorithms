@@ -42,6 +42,8 @@ const Navbar = ({ notifyMsg }) => {
         <div className="signlang_navlinks_logo">
           <a href="/">
             <img className="logo" src={logo} alt="logo" />
+            <h2 className="logo_title">SIGNIFY</h2>
+
           </a>
         </div>
 

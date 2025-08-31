@@ -16,6 +16,15 @@ import DisplayImg from "../../assests/displayGif.gif";
 
 let startTime = "";
 
+// Helper function to transform landmarks to match display coordinates
+const transformLandmarks = (landmarks, videoWidth, videoHeight, displayWidth, displayHeight) => {
+  return landmarks.map(landmark => ({
+    x: landmark.x * displayWidth,
+    y: landmark.y * displayHeight,
+    z: landmark.z
+  }));
+};
+
 const Detect = () => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -46,6 +55,14 @@ const Detect = () => {
   const [lastGestureTime, setLastGestureTime] = useState(0);
   const [gestureTimeout, setGestureTimeout] = useState(null);
 
+  // ------------------- Speech-to-Text States -------------------
+  const [isListening, setIsListening] = useState(false);
+  const [transcript, setTranscript] = useState("");
+  const [speechRecognition, setSpeechRecognition] = useState(null);
+  const [speechHistory, setSpeechHistory] = useState([]);
+  const [micPermission, setMicPermission] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState('en-US');
+
   // Load voices when the component mounts
   useEffect(() => {
     const loadVoices = () => {
@@ -57,6 +74,88 @@ const Detect = () => {
     loadVoices();
     window.speechSynthesis.onvoiceschanged = loadVoices;
   }, []);
+
+  // Handle canvas resizing when webcam dimensions change
+  useEffect(() => {
+    const handleResize = () => {
+      if (webcamRef.current && canvasRef.current) {
+        const video = webcamRef.current.video;
+        if (video && video.videoWidth && video.videoHeight) {
+          const displayWidth = video.offsetWidth;
+          const displayHeight = video.offsetHeight;
+          
+          canvasRef.current.width = displayWidth;
+          canvasRef.current.height = displayHeight;
+        }
+      }
+    };
+
+    // Add resize listener
+    window.addEventListener('resize', handleResize);
+    
+    // Initial setup
+    handleResize();
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [webcamRunning]);
+
+  // Initialize Speech Recognition
+  useEffect(() => {
+    const initSpeechRecognition = () => {
+      // Check if browser supports Speech Recognition
+      if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = selectedLanguage;
+        
+        recognition.onstart = () => {
+          setIsListening(true);
+          setTranscript("");
+        };
+        
+        recognition.onresult = (event) => {
+          let finalTranscript = '';
+          let interimTranscript = '';
+          
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            const transcript = event.results[i][0].transcript;
+            if (event.results[i].isFinal) {
+              finalTranscript += transcript;
+            } else {
+              interimTranscript += transcript;
+            }
+          }
+          
+          if (finalTranscript) {
+            setTranscript(prev => prev + ' ' + finalTranscript);
+          }
+        };
+        
+        recognition.onerror = (event) => {
+          console.error('Speech recognition error:', event.error);
+          setIsListening(false);
+          if (event.error === 'not-allowed') {
+            setMicPermission(false);
+          }
+        };
+        
+        recognition.onend = () => {
+          setIsListening(false);
+        };
+        
+        setSpeechRecognition(recognition);
+      } else {
+        console.error('Speech recognition not supported in this browser');
+      }
+    };
+
+    initSpeechRecognition();
+  }, [selectedLanguage]);
 
   // Load sentence history from localStorage on component mount
   useEffect(() => {
@@ -252,6 +351,112 @@ const Detect = () => {
     }
   };
 
+  // Handle language change for speech recognition
+  const handleLanguageChange = (newLanguage) => {
+    setSelectedLanguage(newLanguage);
+    
+    // If currently listening, stop and restart with new language
+    if (isListening && speechRecognition) {
+      try {
+        speechRecognition.stop();
+        // The useEffect will automatically restart with new language
+      } catch (error) {
+        console.error('Error stopping speech recognition for language change:', error);
+      }
+    }
+  };
+
+  // ------------------- Speech-to-Text Functions -------------------
+  
+  // Start listening for speech
+  const startListening = () => {
+    if (speechRecognition && !isListening) {
+      try {
+        speechRecognition.start();
+        setMicPermission(true);
+      } catch (error) {
+        console.error('Error starting speech recognition:', error);
+      }
+    }
+  };
+
+  // Stop listening for speech
+  const stopListening = () => {
+    if (speechRecognition && isListening) {
+      try {
+        speechRecognition.stop();
+      } catch (error) {
+        console.error('Error stopping speech recognition:', error);
+      }
+    }
+  };
+
+  // Save speech transcript to history
+  const saveSpeechToHistory = () => {
+    if (transcript && transcript.trim() !== "") {
+      const newSpeechItem = {
+        id: Date.now(),
+        text: transcript.trim(),
+        timestamp: new Date().toLocaleTimeString()
+      };
+      
+      setSpeechHistory(prev => {
+        const updatedHistory = [...prev, newSpeechItem];
+        localStorage.setItem('signLanguageSpeechHistory', JSON.stringify(updatedHistory));
+        return updatedHistory;
+      });
+      
+      setTranscript("");
+      console.log('Speech saved:', newSpeechItem.text);
+    }
+  };
+
+  // Clear speech transcript
+  const clearTranscript = () => {
+    setTranscript("");
+  };
+
+  // Clear all speech history
+  const clearAllSpeechHistory = () => {
+    if (window.confirm('Are you sure you want to clear all speech history? This action cannot be undone.')) {
+      setSpeechHistory([]);
+      localStorage.removeItem('signLanguageSpeechHistory');
+      console.log('Cleared all speech history');
+    }
+  };
+
+  // Export speech history
+  const exportSpeechHistory = () => {
+    if (speechHistory.length === 0) {
+      alert('No speech history to export.');
+      return;
+    }
+
+    try {
+      // Extract only the speech text without timestamps or metadata
+      const speechTextOnly = speechHistory.map(item => item.text);
+      
+      const exportData = {
+        speech: speechTextOnly
+      };
+
+      const dataStr = JSON.stringify(exportData, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      
+      const url = URL.createObjectURL(dataBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'speech-to-text-history.json';
+      link.click();
+      
+      URL.revokeObjectURL(url);
+      console.log('Exported speech history:', speechTextOnly.length, 'entries');
+    } catch (error) {
+      console.error('Error exporting speech history:', error);
+      alert('Failed to export speech history. Please try again.');
+    }
+  };
+
   // Find image for detected gesture
   const findImageForGesture = (gestureName) => {
     const normalizedGestureName = gestureName.toLowerCase().replace(/\s+/g, "");
@@ -307,20 +512,46 @@ const Detect = () => {
     canvasCtx.save();
     canvasCtx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
 
+    // Get the actual video dimensions from the webcam
     const videoWidth = webcamRef.current.video.videoWidth;
     const videoHeight = webcamRef.current.video.videoHeight;
-    webcamRef.current.video.width = videoWidth;
-    webcamRef.current.video.height = videoHeight;
-    canvasRef.current.width = videoWidth;
-    canvasRef.current.height = videoHeight;
+    
+    // Get the displayed webcam dimensions (CSS dimensions)
+    const displayWidth = webcamRef.current.video.offsetWidth;
+    const displayHeight = webcamRef.current.video.offsetHeight;
+    
+    // Set canvas dimensions to match the displayed webcam size
+    canvasRef.current.width = displayWidth;
+    canvasRef.current.height = displayHeight;
+    
+    // Calculate scaling factors to map video coordinates to display coordinates
+    const scaleX = displayWidth / videoWidth;
+    const scaleY = displayHeight / videoHeight;
+
+    // Debug logging (remove in production)
+    if (results.landmarks && results.landmarks.length > 0) {
+      console.log('Video dimensions:', videoWidth, 'x', videoHeight);
+      console.log('Display dimensions:', displayWidth, 'x', displayHeight);
+      console.log('Scaling factors:', scaleX, scaleY);
+      console.log('First landmark:', results.landmarks[0][0]);
+    }
 
     if (results.landmarks) {
       for (const landmarks of results.landmarks) {
-        drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {
+        // Transform landmarks to match the display coordinates using helper function
+        const transformedLandmarks = transformLandmarks(
+          landmarks, 
+          videoWidth, 
+          videoHeight, 
+          displayWidth, 
+          displayHeight
+        );
+        
+        drawConnectors(canvasCtx, transformedLandmarks, HAND_CONNECTIONS, {
           color: "#00FF00",
           lineWidth: 5,
         });
-        drawLandmarks(canvasCtx, landmarks, { color: "#FF0000", lineWidth: 2 });
+        drawLandmarks(canvasCtx, transformedLandmarks, { color: "#FF0000", lineWidth: 2 });
       }
     }
     
@@ -494,12 +725,19 @@ const Detect = () => {
         {accessToken ? (
           <>
             <div style={{ position: "relative" }}>
-              <Webcam
-                audio={false}
-                ref={webcamRef}
-                className="signlang_webcam"
-              />
-              <canvas ref={canvasRef} className="signlang_canvas" />
+              <div className="signlang_webcam">
+                <Webcam
+                  audio={false}
+                  ref={webcamRef}
+                  style={{ 
+                    width: "100%", 
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block"
+                  }}
+                />
+                <canvas ref={canvasRef} className="signlang_canvas" />
+              </div>
               <div className="signlang_data-container">
                 <button onClick={enableCam} disabled={isLoading}>
                   {isLoading ? "Loading..." : webcamRunning ? "Stop" : "Start"}
@@ -542,7 +780,7 @@ const Detect = () => {
                 </label>
                 
                 {/* Manual Sentence Completion */}
-                <div className="manual-completion">
+                {/* <div className="manual-completion">
                   <h4>Manual Control:</h4>
                   <button 
                     onClick={manualCompleteSentence} 
@@ -551,10 +789,87 @@ const Detect = () => {
                   >
                     Complete Sentence Now
                   </button>
-                  <p className="completion-help">
-                    Use this button to manually complete your sentence when you're done signing.
-                    This ensures the last gesture is properly captured.
-                  </p>
+                  
+                </div> */}
+              </div>
+
+              {/* Speech-to-Text Section */}
+              <div className="speech-to-text-section">
+                <h3>Speech-to-Text</h3>
+                
+                {/* Language Selection */}
+                <div className="language-selector">
+                  <label htmlFor="language-select">Select Language:</label>
+                  <select 
+                    id="language-select"
+                    value={selectedLanguage}
+                    onChange={(e) => handleLanguageChange(e.target.value)}
+                    className="language-dropdown"
+                  >
+                    <option value="en-US">English (US)</option>
+                    <option value="gu-IN">ગુજરાતી (Gujarati)</option>
+                    <option value="hi-IN">हिंदी (Hindi)</option>
+                    
+                  </select>
+                </div>
+                
+                <div className="stt-controls">
+                  <button 
+                    onClick={isListening ? stopListening : startListening}
+                    className={`mic-button ${isListening ? 'listening' : ''}`}
+                    disabled={!speechRecognition}
+                  >
+                    {isListening ? '🛑 Stop Listening' : '🎤 Start Listening'}
+                  </button>
+                  
+                  {!speechRecognition && (
+                    <p className="stt-error">
+                      Speech recognition not supported in this browser. Please use Chrome, Edge, or Safari.
+                    </p>
+                  )}
+                </div>
+
+                {transcript && (
+                  <div className="transcript-display">
+                    <h4>Live Transcript:</h4>
+                    <div className="transcript-text">{transcript}</div>
+                    <div className="transcript-actions">
+                      <button onClick={saveSpeechToHistory} className="save-transcript-btn">
+                        Save to History
+                      </button>
+                      <button onClick={clearTranscript} className="clear-transcript-btn">
+                        Clear
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Speech History */}
+                <div className="speech-history">
+                  <div className="speech-history-header">
+                    <h4>Speech History:</h4>
+                    <div className="speech-history-buttons">
+                      <button onClick={clearAllSpeechHistory} className="clear-speech-btn">
+                        Clear All
+                      </button>
+                      <button onClick={exportSpeechHistory} className="export-speech-btn">
+                        Export
+                      </button>
+                    </div>
+                  </div>
+                  
+                  {speechHistory.length > 0 ? (
+                    <div className="speech-history-list">
+                      {speechHistory.map((item) => (
+                        <div key={item.id} className="speech-history-item">
+                          <span className="speech-timestamp">{item.timestamp}</span>
+                          <span className="speech-text">{item.text}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="no-speech">No speech recorded yet. Start speaking to see your transcripts here!</p>
+                  )}
                 </div>
               </div>
 
